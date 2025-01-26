@@ -78,16 +78,26 @@ namespace CalculatorProgram
         }
         private void btnEql_Click(object sender, EventArgs e)
         {
-            num2=int.Parse(txtTotal.Text);
+            try
+            {
+                num2 = int.Parse(txtTotal.Text);
 
-            if(option.Equals("+"))
-                result = num1 + num2;
-            if (option.Equals("-"))
-                result = num1 - num2;
-            if (option.Equals("*"))
-                result = num1 * num2;
-            if (option.Equals("/"))
-                result = num1 / num2;
+                if (option.Equals("+"))
+                    result = num1 + num2;
+                if (option.Equals("-"))
+                    result = num1 - num2;
+                if (option.Equals("*"))
+                    result = num1 * num2;
+                if (option.Equals("/"))
+                {
+                    result = num1 / num2;
+                    MessageBox.Show("Division by zero is not possible");
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Invalid input! Please enter numbers only");
+            }
 
             txtTotal.Text=result+"";
         } 
